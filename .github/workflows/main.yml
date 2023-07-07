@@ -42,4 +42,4 @@ jobs:
             docker stop docker_try
             docker rm docker_try
           fi
-            docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
+            docker run -d --name docker_try -p 5001:5000 gururajthiyagarajan/docker_try:main
