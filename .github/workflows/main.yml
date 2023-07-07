@@ -34,5 +34,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Pull latest image
-        run: docker pull ghcr.io/gururajthiyagarajan/docker_try:main
+      - name: Pull Docker image
+        run: docker pull gururajthiyagarajan/docker_try:main
