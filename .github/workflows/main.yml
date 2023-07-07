@@ -3,6 +3,9 @@ name: Publish Docker image
 on:
   push:
     branches: ['main']
+  pull_request:
+    branches:
+      - main
 
 jobs:
   push_to_registry:
@@ -31,4 +34,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
- 
+      - name: Pull latest image
+        run: docker pull ghcr.io/gururajthiyagarajan/docker_try:main
