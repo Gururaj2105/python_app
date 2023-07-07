@@ -1,0 +1,22 @@
+name: DockerHub Pull
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pull_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull Docker image
+        run: docker pull docker.io/gururajthiyagarajan/docker_try:main
+
+      - name: Update Docker container
+        run: |
+          if docker ps -a --format '{{.Names}}' | grep -Eq '^docker_try$'; then
+            docker stop docker_try
+            docker rm docker_try
+          fi
+          docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
