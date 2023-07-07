@@ -17,8 +17,7 @@ jobs:
         run: |
           if docker ps -a --format '{{.Names}}' | grep -Eq '^docker_try$'; then
             docker stop docker_try
-            docker rm docker_try
-          fi
+            docker rm -f docker_try
 
       - name: Run Docker container
         run: docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
