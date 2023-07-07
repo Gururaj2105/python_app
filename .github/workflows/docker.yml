@@ -6,17 +6,19 @@ on:
       - main
 
 jobs:
-  pull_image:
+  pull_and_update_container:
     runs-on: ubuntu-latest
 
     steps:
       - name: Pull Docker image
         run: docker pull gururajthiyagarajan/docker_try:main
 
-      - name: Update Docker container
+      - name: Stop and remove existing container
         run: |
           if docker ps -a --format '{{.Names}}' | grep -Eq '^docker_try$'; then
             docker stop docker_try
             docker rm docker_try
           fi
-          docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
+
+      - name: Run Docker container
+        run: docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
