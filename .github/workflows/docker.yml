@@ -4,12 +4,16 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:  # Add this trigger to manually run the workflow
 
 jobs:
   pull_and_update_container:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Pull Docker image
         run: docker pull gururajthiyagarajan/docker_try:main
 
@@ -17,7 +21,7 @@ jobs:
         run: |
           if docker ps -a --format '{{.Names}}' | grep -Eq '^docker_try$'; then
             docker stop docker_try
-            docker rm -f docker_try
+            docker rm docker_try
           fi
 
       - name: Run Docker container
