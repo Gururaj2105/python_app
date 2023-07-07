@@ -31,7 +31,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      -  name: Pull and run latest Docker image
-          run:|
-            docker pull gururajthiyagarajan/docker_try
-            docker run gururajthiyagarajan/docker_try
+      - name: Pull and run latest Docker image
+        uses: docker/pull-action@v1
+        with:
+          image: gururajthiyagarajan/docker_try
