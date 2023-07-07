@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Pull Docker image
-        run: docker pull docker.io/gururajthiyagarajan/docker_try:main
+        run: docker pull gururajthiyagarajan/docker_try:main
 
       - name: Update Docker container
         run: |
