@@ -35,15 +35,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       
-      - name: Stop and remove existing container
+      - name: Stop and remove existing container on Docker Desktop
         run: |
-          if docker ps -a --format '{{.Names}}' | grep -Eq '^docker_try$'; then
-            docker stop docker_try
-            docker rm docker_try
-          fi
+          docker container stop docker_try || true
+          docker container rm docker_try || true
       
       - name: Pull Docker image
         run: docker pull gururajthiyagarajan/docker_try:main
       
-      - name: Run Docker container
+      - name: Run Docker container on Docker Desktop
         run: docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
