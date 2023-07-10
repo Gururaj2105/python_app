@@ -37,11 +37,11 @@ jobs:
       
       - name: Stop and remove existing container
         run: |
-          docker stop my-container || true
-          docker rm my-container || true
+          docker stop docker_try || true
+          docker rm docker_try || true
       
       - name: Pull Docker image
         run: docker pull gururajthiyagarajan/docker_try:main
       
       - name: Run Docker container
-        run: docker run -d --name my-container -p 5000:5000 gururajthiyagarajan/docker_try:main
+        run: docker run -d --name docker_try -p 5000:5000 gururajthiyagarajan/docker_try:main
