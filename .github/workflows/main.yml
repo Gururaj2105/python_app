@@ -37,8 +37,10 @@ jobs:
       
       - name: Stop and remove existing container
         run: |
-          docker stop docker_try || true
-          docker rm docker_try || true
+          if docker ps -a --format '{{.Names}}' | grep -Eq '^docker_try$'; then
+            docker stop docker_try
+            docker rm docker_try
+          fi
       
       - name: Pull Docker image
         run: docker pull gururajthiyagarajan/docker_try:main
